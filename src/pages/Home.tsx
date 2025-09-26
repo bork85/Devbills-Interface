@@ -1,6 +1,8 @@
 import { CreditCard, List, TrendingUp, Wallet } from "lucide-react";
 import type { JSX } from "react";
-import Button from "../components/Button";
+import { useNavigate } from "react-router";
+import { Button } from "../components";
+import { useAuth } from "../context/authContext";
 
 interface Feature {
   icon: JSX.Element;
@@ -9,6 +11,9 @@ interface Feature {
 }
 
 const Home = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const auth = useAuth();
+  const navigate = useNavigate();
   const features: ReadonlyArray<Feature> = [
     {
       icon: <Wallet className="w-8 h-8 text-primary-700" />,
@@ -34,7 +39,7 @@ const Home = () => {
     },
   ];
   return (
-    <div className="bg-gray-950 min-h-screen max-w-7xl flex flex-col items-center justify-center p-5">
+    <div className="bg-gray-800 min-h-screen max-w-7xl mx-auto flex flex-col items-center justify-center p-5">
       <div className="container-app">
         <section className="py-12 md:py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -47,13 +52,15 @@ const Home = () => {
                 suas finanças pessoais ou do seu negócio com facilidade.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <Button className="text-center px-6 py-3">Começar agora</Button>
+                <Button className="text-center px-6 py-3" onClick={() => navigate("/login")}>
+                  Começar agora
+                </Button>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-12 md:py-20 bg-gray-900 rounded-xl">
+        <section className="py-12 md:py-20 bg-gray-800 rounded-xl">
           <div className="container-app">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-white mb-4">Recursos do DevBills</h2>
@@ -64,7 +71,10 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature) => (
-                <div key={feature.title} className="bg-gray-800 p-6 rounded-xl border border-gray-500 hover:shadow-lg">
+                <div
+                  key={feature.title}
+                  className="bg-gray-800 p-6 rounded-xl border border-gray-500 hover:shadow-lg"
+                >
                   <div className="mb-8 bg-primary-500/10 p-3 rounded-full inline-block">
                     {feature.icon}
                   </div>
@@ -77,13 +87,17 @@ const Home = () => {
         </section>
 
         <section className="py-12 md:py-20">
-          <div className="bg-gray-900 p-8 md:pd-12 rounded-xl text-center border border-gray-500">
-            <h2 className="text-2xl md:text-3xl text-bold text-white mb-4">Pronto para organizar suas finanças?</h2>
+          <div className="bg-gray-800 p-8 md:pd-12 rounded-xl text-center border border-gray-500">
+            <h2 className="text-2xl md:text-3xl text-bold text-white mb-4">
+              Pronto para organizar suas finanças?
+            </h2>
             <p className="text-white text-opacity-90 max-w-2xl mx-auto mb-8">
               Comece a usar o DevBills hoje mesmo e tenha o controle total sobre seu dinheiro. É
               gratuito e fácil de usar!
             </p>
-            <Button className="mx-auto px-6 py-3">Criar Conta Gratuita</Button>
+            <Button className="mx-auto px-6 py-3" onClick={() => navigate("/login")}>
+              Criar Conta Gratuita
+            </Button>
           </div>
         </section>
       </div>

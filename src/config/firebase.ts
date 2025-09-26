@@ -1,9 +1,11 @@
-import { initializeApp } from "firebase/app"; // Import the functions you need from the SDKs you need
+import { type FirebaseOptions, initializeApp } from "firebase/app"; // Import the functions you need from the SDKs you need
+import { GoogleAuthProvider, getAuth } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
@@ -11,6 +13,9 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
-
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig, "Devbills");
+const firebaseAuth = getAuth(firebaseApp);
+const googleAuthProvider = new GoogleAuthProvider();
+
+export { firebaseApp, firebaseAuth, googleAuthProvider };
