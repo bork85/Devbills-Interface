@@ -1,4 +1,9 @@
-import type { Transaction, TransactionFilter, TransactionSummary } from "../types/transactions";
+import type {
+  MonthLyItem,
+  Transaction,
+  TransactionFilter,
+  TransactionSummary,
+} from "../types/transactions";
 import { api } from "./api";
 
 export const getTransactions = async (
@@ -14,6 +19,17 @@ export const getTransactionsSummary = async (
 ): Promise<TransactionSummary> => {
   const response = await api.get<TransactionSummary>("/transactions/summary", {
     params: { month, year },
+  });
+  return response.data;
+};
+
+export const getTransactionsMonthly = async (
+  month: number,
+  year: number,
+  monthHist?: number,
+): Promise<{ history: MonthLyItem[] }> => {
+  const response = await api.get("/transactions/historical", {
+    params: { year, month, monthHist },
   });
   return response.data;
 };

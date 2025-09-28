@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { GoogleLoginButton } from "../components";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const { signInWithGoogle, authState } = useAuth();

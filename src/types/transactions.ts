@@ -28,3 +28,8 @@ export interface TransactionSummary {
   balance: number;
   expensesByCategory: CategorySummary[];
 }
+export interface MonthLyItem {
+  name: string;
+  expense: number;
+  income: number;
+}

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { AuthProvider } from "../context/authContext";
+import { AuthProvider } from "../context/AuthContext";
 import AppLayout from "../layout/AppLayout";
 import Dashboard from "../pages/Dashboard";
 import Home from "../pages/Home";

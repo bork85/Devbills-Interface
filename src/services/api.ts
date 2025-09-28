@@ -13,6 +13,7 @@ api.interceptors.request.use(
             try {
                 const token = await user.getIdToken();
                 config.headers.set("Authorization", `Bearer ${token}`);
+                console.log(token)
             } catch (error) {
                 console.error("Erro ao obter Token Usuario", error);
             }
