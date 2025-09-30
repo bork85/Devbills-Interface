@@ -44,7 +44,7 @@ const MonthYearSelect = ({ month, year, onMonthChange, onYearChange }: MonthYear
 
  
   return (
-    <div className="flex items-center justify-between bg-gray-800 rounded-lg p-3 gap-2 border border-gray-700">
+    <div className="flex items-center justify-between bg-gray-700 rounded-xl p-3 gap-2 border border-gray-500 w-full">
       <button
         type="button"
         onClick={handlePrevMonth}

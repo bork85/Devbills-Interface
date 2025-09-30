@@ -96,7 +96,7 @@ const Dashboard = () => {
           hover
         >
           {summary.expensesByCategory.length > 0 ? (
-            <div className="h-120 mt-4">
+            <div className="h-100 mt-4">
               <ResponsiveContainer>
                 <PieChart>
                   <Pie
@@ -117,7 +117,7 @@ const Dashboard = () => {
               </ResponsiveContainer>
             </div>
           ) : (
-            <div className="flex items-center justify-center h-120 text-gray-500">
+            <div className="flex items-center justify-center h-80 text-gray-500">
               Não há dados de transações!
             </div>
           )}
@@ -126,8 +126,9 @@ const Dashboard = () => {
           icon={<Calendar size={20} className="text-primary-500" />}
           title="Historico Mensal"
           className="min-h-80"
+          hover
         >
-          <div className="h-110 mt-4">
+          <div className="h-80 mt-4">
             {monthLyItemData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={monthLyItemData} margin={{left: 30, top: 50}}>
@@ -149,7 +150,7 @@ const Dashboard = () => {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="flex items-center justify-center h-120 text-gray-500">
+              <div className="flex items-center justify-center h-80 text-gray-500">
                 Não há dados de transações!
               </div>
             )}

@@ -2,7 +2,8 @@ import { CreditCard, List, TrendingUp, Wallet } from "lucide-react";
 import type { JSX } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "../components";
-import { useAuth } from "../context/authContext";
+
+//import { useAuth } from "../context/AuthContext";
 
 interface Feature {
   icon: JSX.Element;
@@ -12,7 +13,7 @@ interface Feature {
 
 const Home = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const auth = useAuth();
+  //const auth = useAuth();
   const navigate = useNavigate();
   const features: ReadonlyArray<Feature> = [
     {
