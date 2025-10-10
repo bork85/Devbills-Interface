@@ -61,12 +61,14 @@ const Dashboard = () => {
     <div className="container-app py-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
         <h1 className="text-2xl font-bold mb-4 md:mb-0">Dashboard</h1>
-        <MonthYearSelect
-          month={month}
-          year={year}
-          onMonthChange={setMonth}
-          onYearChange={setYear}
-        />
+        <div className="w-90">
+          <MonthYearSelect
+            month={month}
+            year={year}
+            onMonthChange={setMonth}
+            onYearChange={setYear}
+          />
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card icon={<Wallet size={20} className="text-primary-500" />} title="Saldo" hover>
@@ -131,19 +133,26 @@ const Dashboard = () => {
           <div className="h-80 mt-4">
             {monthLyItemData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={monthLyItemData} margin={{left: 30, top: 50}}>
+                <BarChart data={monthLyItemData} margin={{ left: 30, top: 50 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                   <XAxis
                     dataKey="name"
                     stroke="#94A3B8"
                     tick={{ style: { textTransform: "capitalize" } }}
                   />
-                  <YAxis stroke="#94A3B8" tick={{ style: { fontSize: 12 } }} tickFormatter={formatCurrency}/>
-                  <Tooltip formatter={formatCurrency} contentStyle={{
-                    backgroundColor: '#1a1a1a',
-                    borderColor: '#2a2a2a'
-                  }}
-                  labelStyle={{color: '#f8f8f8'}}/>
+                  <YAxis
+                    stroke="#94A3B8"
+                    tick={{ style: { fontSize: 12 } }}
+                    tickFormatter={formatCurrency}
+                  />
+                  <Tooltip
+                    formatter={formatCurrency}
+                    contentStyle={{
+                      backgroundColor: "#1a1a1a",
+                      borderColor: "#2a2a2a",
+                    }}
+                    labelStyle={{ color: "#f8f8f8" }}
+                  />
                   <Legend />
                   <Bar dataKey="expense" fill="#FF6384" />
                   <Bar dataKey="income" fill="#37E359" />

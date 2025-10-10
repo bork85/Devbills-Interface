@@ -26,23 +26,22 @@ const MonthYearSelect = ({ month, year, onMonthChange, onYearChange }: MonthYear
   const years = Array.from({ length: 11 }, (_, i) => currentYear - 5 + i); // array 5 anos pra trás até 5 anos pra frente
 
   const handleNextMonth = (): void => {
-    if(month === 12) {
+    if (month === 12) {
       onMonthChange(1);
       onYearChange(year + 1);
-    }else {
+    } else {
       onMonthChange(month + 1);
     }
-  }
-    const handlePrevMonth = (): void => {
-    if(month === 1) {
+  };
+  const handlePrevMonth = (): void => {
+    if (month === 1) {
       onMonthChange(12);
       onYearChange(year - 1);
-    }else {
+    } else {
       onMonthChange(month - 1);
     }
-  }
+  };
 
- 
   return (
     <div className="flex items-center justify-between bg-gray-700 rounded-xl p-3 gap-2 border border-gray-500 w-full">
       <button
@@ -53,41 +52,43 @@ const MonthYearSelect = ({ month, year, onMonthChange, onYearChange }: MonthYear
       >
         <ChevronLeft />
       </button>
-      <div>
-        <label htmlFor="month-select" className="sr-only">
-          Mês
-        </label>
-        {/** biome-ignore lint/correctness/useUniqueElementIds: <false positive> */}
-        <select
-          id="month-select"
+      <div className="w-[210px] flex items-center justify-between">
+        <div>
+          <label htmlFor="month-select" className="sr-only">
+            Mês
+          </label>
+          {/** biome-ignore lint/correctness/useUniqueElementIds: <false positive> */}
+          <select
+            id="month-select"
             value={month}
             onChange={(event) => onMonthChange(Number(event.target.value))}
-          className="bg-gray-800 border border-gray-700 rounded-md py-1 px-3 text-sm font-medium focus: outline-none focus: ring-2 focus: ring-primary-500 cursor-pointer"
-        >
-          {monthNames.map((name, index) => (
-            <option key={name} value={index + 1}>
-              {name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="year-select" className="sr-only">
-          Ano
-        </label>
-        {/** biome-ignore lint/correctness/useUniqueElementIds: <false positive> */}
-        <select
-          id="year-select"
-          value={year}
-          onChange={(event) => onYearChange(Number(event.target.value))}
-          className="bg-gray-800 border border-gray-700 rounded-md py-1 px-3 text-sm font-medium focus: outline-none focus: ring-2 focus: ring-primary-500  cursor-pointer"
-        >
-          {years.map((name) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
+            className="bg-gray-800 border border-gray-700 rounded-md py-1 px-3 text-sm font-medium focus: outline-none focus: ring-2 focus: ring-primary-500 cursor-pointer"
+          >
+            {monthNames.map((name, index) => (
+              <option key={name} value={index + 1}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="year-select" className="sr-only">
+            Ano
+          </label>
+          {/** biome-ignore lint/correctness/useUniqueElementIds: <false positive> */}
+          <select
+            id="year-select"
+            value={year}
+            onChange={(event) => onYearChange(Number(event.target.value))}
+            className="bg-gray-800 border border-gray-700 rounded-md py-1 px-3 text-sm font-medium focus: outline-none focus: ring-2 focus: ring-primary-500  cursor-pointer"
+          >
+            {years.map((name) => (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <button
         type="button"
