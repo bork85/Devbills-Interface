@@ -33,3 +33,11 @@ export interface MonthLyItem {
   expense: number;
   income: number;
 }
+
+export interface CreateTransactionDTO {
+  description: string;
+  amount: number;
+  date: Date | string;
+  categoryId: string;
+  type: TransactionType;
+}

@@ -3,4 +3,7 @@ export { default as Card } from "./Card";
 export { default as Footer } from "./Footer";
 export { default as GoogleLoginButton } from "./GoogleLoginButton";
 export { default as Header } from "./Header";
+export { default as Input } from "./Input";
 export { default as MonthYearSelect } from "./MonthYearSelect";
+export { default as Select } from "./Select";
+export { default as TransactionTypeSelector } from "./TransactionTypeSelector";
