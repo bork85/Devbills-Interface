@@ -18,11 +18,6 @@ import { getTransactionsMonthly, getTransactionsSummary } from "../services/tran
 import type { MonthLyItem, TransactionSummary } from "../types/transactions";
 import { formatCurrency } from "../utils/formatters";
 
-interface chartLabelProps {
-  categoryName: string;
-  percent: number;
-}
-
 const Dashboard = () => {
   const initialSummary: TransactionSummary = {
     totalIncomes: 0,
@@ -51,8 +46,12 @@ const Dashboard = () => {
     }
     loadMonthlyData();
   }, [month, year]);
-  const renderPieChartLabel = ({ categoryName, percent }: chartLabelProps): string => {
-    return `${categoryName}: ${(percent * 100).toFixed(1)}%`;
+  
+  const renderPieChartLabel = (props: any): string => {
+    const categoryName =
+      props.name ?? props.payload?.categoryName ?? props.payload?.name ?? "Categoria";
+    const percent = typeof props.percent === "number" ? props.percent : 0;
+    return `${categoryName}: ${((percent ?? 0) * 100).toFixed(1)}%`;
   };
   const formatToolTip = (value: number | string): string => {
     return formatCurrency(typeof value === "number" ? value : 0);
