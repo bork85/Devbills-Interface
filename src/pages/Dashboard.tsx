@@ -47,7 +47,8 @@ const Dashboard = () => {
     loadMonthlyData();
   }, [month, year]);
   
-  const renderPieChartLabel = (props: any): string => {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanatio>
+    const renderPieChartLabel = (props: any): string => {
     const categoryName =
       props.name ?? props.payload?.categoryName ?? props.payload?.name ?? "Categoria";
     const percent = typeof props.percent === "number" ? props.percent : 0;

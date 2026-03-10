@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { onAuthStateChanged, signInWithRedirect, signOut } from "firebase/auth";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 import { firebaseAuth, googleAuthProvider } from "../config/firebase";
 import type { AuthState } from "../types/auth";
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signInWithGoogle = async (): Promise<void> => {
     SetAuthState((prev) => ({ ...prev, isloading: true }));
     try {
-      await signInWithPopup(firebaseAuth, googleAuthProvider);
+      await signInWithRedirect(firebaseAuth, googleAuthProvider);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Erro ao efetuar Login";
       SetAuthState((prev) => ({ ...prev, isloading: false, error: message }));
