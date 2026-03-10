@@ -35,14 +35,18 @@ const Dashboard = () => {
   useEffect(() => {
     async function loadSummary() {
       const response = await getTransactionsSummary(month, year);
-      setSummary(response);
+      if (response) {
+        setSummary(response);
+      }
     }
     loadSummary();
   }, [month, year]);
   useEffect(() => {
     async function loadMonthlyData() {
       const response = await getTransactionsMonthly(month, year);
-      setMonthLyItemData(response.history);
+      if (response?.history) {
+        setMonthLyItemData(response.history);
+      }
     }
     loadMonthlyData();
   }, [month, year]);

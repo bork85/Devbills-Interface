@@ -18,10 +18,15 @@ export const getTransactionsSummary = async (
   month: number,
   year: number,
 ): Promise<TransactionSummary> => {
-  const response = await api.get<TransactionSummary>("/transactions/summary", {
-    params: { month, year },
-  });
-  return response.data;
+  try {
+    const response = await api.get<TransactionSummary>("/transactions/summary", {
+      params: { month, year },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar resumo:", error);
+    return { totalIncomes: 0, totalExpenses: 0, balance: 0, expensesByCategory: [] };
+  }
 };
 
 export const getTransactionsMonthly = async (
@@ -29,10 +34,15 @@ export const getTransactionsMonthly = async (
   year: number,
   monthHist?: number,
 ): Promise<{ history: MonthLyItem[] }> => {
-  const response = await api.get("/transactions/historical", {
-    params: { year, month, monthHist },
-  });
-  return response.data;
+  try {
+    const response = await api.get("/transactions/historical", {
+      params: { year, month, monthHist },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar histórico:", error);
+    return { history: [] };
+  }
 };
 
 export const deleteTransaction = async (id:string):Promise<void> => {
