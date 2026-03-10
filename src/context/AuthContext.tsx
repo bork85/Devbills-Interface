@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signInWithRedirect, signOut } from "firebase/auth";
+import { getRedirectResult, onAuthStateChanged, signInWithRedirect, signOut } from "firebase/auth";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 import { firebaseAuth, googleAuthProvider } from "../config/firebase";
 import type { AuthState } from "../types/auth";
@@ -39,11 +39,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    getRedirectResult(firebaseAuth).catch((error) => {
+      console.error("Erro no redirect:", error);
+      SetAuthState((prev) => ({ ...prev, error: error.message, isloading: false }));
+    });
+
     const unsubscribe = onAuthStateChanged(
       firebaseAuth,
       (user) => {
         if (user) {
-          //console.log(user);    //AQUI!
           SetAuthState({
             user: {
               uid: user.uid,

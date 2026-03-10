@@ -36,6 +36,7 @@ const AppRoutes = () => {
             </Route>
           </Route>
 
+          <Route path="/__/auth/handler" element={<Login />} />
           <Route path="*" element={<h2>404 - Página não encontrada</h2>} />
         </Routes>
         <ToastContainer {...toastConfig} />
